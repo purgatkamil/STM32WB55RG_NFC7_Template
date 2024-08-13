@@ -43,6 +43,16 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Drivers/BSP/NFC07A1}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Middlewares/ST/lib_nfc7/lib_NDEF/Core/inc}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Middlewares/ST/lib_nfc7/Common/inc}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Third_Party/FreeRTOS/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Third_Party/FreeRTOS/CMSIS_RTOS_V2}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Third_Party/FreeRTOS/portable/GCC/ARM_CM4F}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Third_Party}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Debug/Third_Party/FreeRTOS/CMSIS_RTOS_V2}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Debug/Third_Party/FreeRTOS/portable}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Debug/Third_Party}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Debug/Third_Party/FreeRTOS}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Debug/Third_Party/FreeRTOS/portable/GCC/ARM_CM4F}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Debug/Third_Party/FreeRTOS/portable/MemMang}&quot;"/>
 								</option>
 								<inputType id="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.assembler.input.477224755" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.assembler.input"/>
 							</tool>
@@ -83,6 +93,15 @@
 									<listOptionValue builtIn="false" value="../NFC7/Target"/>
 									<listOptionValue builtIn="false" value="../Drivers/BSP/Components/st25dvxxkc"/>
 									<listOptionValue builtIn="false" value="../Drivers/BSP/NFC07A1"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Third_Party/FreeRTOS/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Third_Party/FreeRTOS/CMSIS_RTOS_V2}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Third_Party/FreeRTOS/portable/GCC/ARM_CM4F}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Third_Party}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Debug/Third_Party/FreeRTOS}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Debug/Third_Party/FreeRTOS/CMSIS_RTOS_V2}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Debug/Third_Party/FreeRTOS/portable/GCC/ARM_CM4F}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Debug/Third_Party/FreeRTOS/portable/MemMang}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Third_Party/FreeRTOS/portable/MemMang}&quot;"/>
 								</option>
 								<inputType id="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.input.c.449631943" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.input.c"/>
 							</tool>
@@ -110,7 +129,9 @@
 					</folderInfo>
 					<sourceEntries>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="NFC7"/>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="Third_Party/FreeRTOS/CMSIS_RTOS_V2"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="STM32_WPAN"/>
+						<entry excluding="FreeRTOS/CMSIS_RTOS_V2" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="Third_Party"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Core"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Utilities"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Middlewares"/>
@@ -159,6 +180,16 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Drivers/BSP/NFC07A1}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Middlewares/ST/lib_nfc7/lib_NDEF/Core/inc}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Middlewares/ST/lib_nfc7/Common/inc}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Third_Party/FreeRTOS/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Third_Party/FreeRTOS/CMSIS_RTOS_V2}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Third_Party/FreeRTOS/portable/GCC/ARM_CM4F}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Third_Party}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Debug/Third_Party/FreeRTOS/CMSIS_RTOS_V2}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Debug/Third_Party/FreeRTOS/portable}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Debug/Third_Party}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Debug/Third_Party/FreeRTOS}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Debug/Third_Party/FreeRTOS/portable/GCC/ARM_CM4F}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Debug/Third_Party/FreeRTOS/portable/MemMang}&quot;"/>
 								</option>
 								<inputType id="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.assembler.input.1954375318" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.assembler.input"/>
 							</tool>
@@ -202,6 +233,16 @@
 									<listOptionValue builtIn="false" value="../NFC7/Target"/>
 									<listOptionValue builtIn="false" value="../Drivers/BSP/Components/st25dvxxkc"/>
 									<listOptionValue builtIn="false" value="../Drivers/BSP/NFC07A1"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Third_Party/FreeRTOS/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Third_Party/FreeRTOS/CMSIS_RTOS_V2}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Third_Party/FreeRTOS/portable/GCC/ARM_CM4F}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Third_Party}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Debug/Third_Party/FreeRTOS/CMSIS_RTOS_V2}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Debug/Third_Party/FreeRTOS/portable}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Debug/Third_Party}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Debug/Third_Party/FreeRTOS}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Debug/Third_Party/FreeRTOS/portable/GCC/ARM_CM4F}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Debug/Third_Party/FreeRTOS/portable/MemMang}&quot;"/>
 								</option>
 								<inputType id="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.input.c.1334090199" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.input.c"/>
 							</tool>
