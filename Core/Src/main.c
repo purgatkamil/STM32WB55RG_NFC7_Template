@@ -86,18 +86,23 @@ const osThreadAttr_t nfcTask_attributes = {
 
 void StartBleTask(void *argument)
 {
-  for(;;)
-  {
-	  MX_APPE_Process();
-  }
+	MX_APPE_Init();
+
+	for(;;)
+	{
+		MX_APPE_Process();
+	}
 }
 
 void StartNfcTask(void *argument)
 {
-  for(;;)
-  {
-	  MX_NFC7_Process();
-  }
+
+	MX_NFC7_Init();
+
+	for(;;)
+	{
+		MX_NFC7_Process();
+	}
 }
 
 
@@ -147,12 +152,7 @@ int main(void)
   MX_RF_Init();
   /* USER CODE BEGIN 2 */
 
-  MX_NFC7_Init();
-
   /* USER CODE END 2 */
-
-  /* Init code for STM32_WPAN */
-  MX_APPE_Init();
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
@@ -167,7 +167,6 @@ int main(void)
   {
 	#if 0
     /* USER CODE END WHILE */
-    MX_APPE_Process();
 
     /* USER CODE BEGIN 3 */
 	#endif
