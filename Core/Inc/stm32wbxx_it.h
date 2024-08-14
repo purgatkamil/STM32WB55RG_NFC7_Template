@@ -54,6 +54,7 @@ void UsageFault_Handler(void);
 void DebugMon_Handler(void);
 void SysTick_Handler(void);
 void RTC_WKUP_IRQHandler(void);
+void EXTI9_5_IRQHandler(void);
 void TIM1_UP_TIM16_IRQHandler(void);
 void IPCC_C1_RX_IRQHandler(void);
 void IPCC_C1_TX_IRQHandler(void);

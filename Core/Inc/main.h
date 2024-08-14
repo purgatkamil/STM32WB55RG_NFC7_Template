@@ -63,6 +63,7 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define NFC_GPO_Pin GPIO_PIN_6
 #define NFC_GPO_GPIO_Port GPIOA
+#define NFC_GPO_EXTI_IRQn EXTI9_5_IRQn
 #define LED_Pin GPIO_PIN_0
 #define LED_GPIO_Port GPIOB
 #define LED1_YELLOW_Pin GPIO_PIN_6

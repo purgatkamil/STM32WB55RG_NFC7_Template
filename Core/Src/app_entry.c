@@ -518,7 +518,7 @@ void UTIL_SEQ_Own_Idle(void)
 #endif /* CFG_LPM_SUPPORTED == 1 */
 
   __enable_irq();
-  xTaskNotifyWait(0, 0, NULL, portMAX_DELAY);
+  xTaskNotifyWaitIndexed(0, 0, 0, NULL, portMAX_DELAY);
 
   return;
 }

@@ -53,6 +53,8 @@ RTC_HandleTypeDef hrtc;
 
 /* USER CODE BEGIN PV */
 
+volatile int ble_flag = 0;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -90,15 +92,20 @@ const osThreadAttr_t blinkTask_attributes = {
   .stack_size = 256 * 4
 };
 
-
 void StartBleTask(void *argument)
 {
+
 	MX_APPE_Init();
+
 
 	for(;;)
 	{
-		MX_APPE_Process();
-		HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+		if(ble_flag != 0)
+		{
+			MX_APPE_Process();
+			HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+		}
+
 	}
 }
 
@@ -177,7 +184,6 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-
   bleTaskHandle = osThreadNew(StartBleTask, NULL, &bleTask_attributes);
 
   nfcTaskHandle = osThreadNew(StartNfcTask, NULL, &nfcTask_attributes);
@@ -413,6 +419,10 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(LED3_GREEN_GPIO_Port, &GPIO_InitStruct);
+
+  /* EXTI interrupt init*/
+  HAL_NVIC_SetPriority(EXTI9_5_IRQn, 5, 0);
+  HAL_NVIC_EnableIRQ(EXTI9_5_IRQn);
 
 /* USER CODE BEGIN MX_GPIO_Init_2 */
 /* USER CODE END MX_GPIO_Init_2 */

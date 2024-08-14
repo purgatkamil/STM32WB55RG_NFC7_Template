@@ -27,6 +27,7 @@
 #include <FreeRTOS.h>
 #include <task.h>
 
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -36,6 +37,8 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+extern osThreadId_t bleTaskHandle;
+extern volatile int ble_flag;
 
 /* USER CODE END PD */
 
@@ -46,8 +49,6 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN PV */
-
-extern osThreadId_t bleTaskHandle;
 
 /* USER CODE END PV */
 
@@ -204,6 +205,22 @@ void RTC_WKUP_IRQHandler(void)
 }
 
 /**
+  * @brief This function handles EXTI line[9:5] interrupts.
+  */
+void EXTI9_5_IRQHandler(void)
+{
+  /* USER CODE BEGIN EXTI9_5_IRQn 0 */
+
+	ble_flag = 1;
+
+  /* USER CODE END EXTI9_5_IRQn 0 */
+  HAL_EXTI_IRQHandler(&H_EXTI_6);
+  /* USER CODE BEGIN EXTI9_5_IRQn 1 */
+
+  /* USER CODE END EXTI9_5_IRQn 1 */
+}
+
+/**
   * @brief This function handles TIM1 update interrupt and TIM16 global interrupt.
   */
 void TIM1_UP_TIM16_IRQHandler(void)
@@ -230,8 +247,9 @@ void IPCC_C1_RX_IRQHandler(void)
   HAL_IPCC_RX_IRQHandler(&hipcc);
   /* USER CODE BEGIN IPCC_C1_RX_IRQn 1 */
 
-  xTaskNotifyFromISR(bleTaskHandle, 0, eNoAction, &xHigherPriorityTaskWoken);
+  xTaskNotifyIndexedFromISR(bleTaskHandle, 0, 0, eNoAction, &xHigherPriorityTaskWoken);
   portYIELD_FROM_ISR( xHigherPriorityTaskWoken );
+
 
   /* USER CODE END IPCC_C1_RX_IRQn 1 */
 }
@@ -249,7 +267,8 @@ void IPCC_C1_TX_IRQHandler(void)
   HAL_IPCC_TX_IRQHandler(&hipcc);
   /* USER CODE BEGIN IPCC_C1_TX_IRQn 1 */
 
-  xTaskNotifyFromISR(bleTaskHandle, 0, eNoAction, &xHigherPriorityTaskWoken);
+
+  xTaskNotifyIndexedFromISR(bleTaskHandle, 0, 0, eNoAction, &xHigherPriorityTaskWoken);
   portYIELD_FROM_ISR( xHigherPriorityTaskWoken );
 
   /* USER CODE END IPCC_C1_TX_IRQn 1 */
