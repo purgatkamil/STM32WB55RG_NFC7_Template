@@ -30,6 +30,11 @@
 #include "tagtype5_wrapper.h"
 #include "lib_NDEF_URI.h"
 
+#include "cmsis_os.h"
+#include "cmsis_os2.h"
+#include "task.h"
+#include "FreeRTOS.h"
+
 /** @defgroup ST25_Nucleo
   * @{
   */
@@ -95,11 +100,11 @@ void MX_NFC7_NDEF_URI_Init(void)
   NFC07A1_LED_Init(BLUE_LED );
   NFC07A1_LED_Init(YELLOW_LED );
   NFC07A1_LED_On( GREEN_LED );
-  HAL_Delay( 300 );
+  osDelay( 30 );
   NFC07A1_LED_On( BLUE_LED );
-  HAL_Delay( 300 );
+  osDelay( 30 );
   NFC07A1_LED_On( YELLOW_LED );
-  HAL_Delay( 300 );
+  osDelay( 30 );
 
   /* Init ST25DVXXKC driver */
   while( NFC07A1_NFCTAG_Init(NFC07A1_NFCTAG_INSTANCE) != NFCTAG_OK );
@@ -122,11 +127,11 @@ void MX_NFC7_NDEF_URI_Init(void)
 
   /* Init done */
   NFC07A1_LED_Off( GREEN_LED );
-  HAL_Delay( 300 );
+  osDelay( 30 );
   NFC07A1_LED_Off( BLUE_LED );
-  HAL_Delay( 300 );
+  osDelay( 30 );
   NFC07A1_LED_Off( YELLOW_LED );
-  HAL_Delay( 300 );
+  osDelay( 30 );
 
   /* Prepare URI NDEF message content */
   strcpy( URI.protocol,URI_ID_0x01_STRING );
@@ -135,7 +140,7 @@ void MX_NFC7_NDEF_URI_Init(void)
   strcpy( URI.Information,"\0" );
 
   /* Write NDEF to EEPROM */
-  HAL_Delay(5);
+  osDelay(5);
   while( NDEF_WriteURI( &URI ) != NDEF_OK );
 
   /* Set the LED3 on to indicate Programing done */

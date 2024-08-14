@@ -22,6 +22,11 @@
 #include "stm32wbxx_it.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+
+#include "cmsis_os.h"
+#include <FreeRTOS.h>
+#include <task.h>
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -42,11 +47,12 @@
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN PV */
 
+extern osThreadId_t bleTaskHandle;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN PFP */
-
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -56,6 +62,7 @@
 
 /* External variables --------------------------------------------------------*/
 extern IPCC_HandleTypeDef hipcc;
+extern RTC_HandleTypeDef hrtc;
 extern TIM_HandleTypeDef htim1;
 
 /* USER CODE BEGIN EV */
@@ -160,9 +167,17 @@ void SysTick_Handler(void)
 {
   /* USER CODE BEGIN SysTick_IRQn 0 */
 
+	HAL_IncTick();
+
   /* USER CODE END SysTick_IRQn 0 */
 
   /* USER CODE BEGIN SysTick_IRQn 1 */
+
+  if(xTaskGetSchedulerState() != taskSCHEDULER_NOT_STARTED)
+  {
+      extern void xPortSysTickHandler(void);
+      xPortSysTickHandler();
+  }
 
   /* USER CODE END SysTick_IRQn 1 */
 }
@@ -173,6 +188,20 @@ void SysTick_Handler(void)
 /* For the available peripheral interrupt handler names,                      */
 /* please refer to the startup file (startup_stm32wbxx.s).                    */
 /******************************************************************************/
+
+/**
+  * @brief This function handles RTC wake-up interrupt through EXTI line 19.
+  */
+void RTC_WKUP_IRQHandler(void)
+{
+  /* USER CODE BEGIN RTC_WKUP_IRQn 0 */
+
+  /* USER CODE END RTC_WKUP_IRQn 0 */
+  HAL_RTCEx_WakeUpTimerIRQHandler(&hrtc);
+  /* USER CODE BEGIN RTC_WKUP_IRQn 1 */
+
+  /* USER CODE END RTC_WKUP_IRQn 1 */
+}
 
 /**
   * @brief This function handles TIM1 update interrupt and TIM16 global interrupt.
@@ -195,9 +224,14 @@ void IPCC_C1_RX_IRQHandler(void)
 {
   /* USER CODE BEGIN IPCC_C1_RX_IRQn 0 */
 
+  BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+
   /* USER CODE END IPCC_C1_RX_IRQn 0 */
   HAL_IPCC_RX_IRQHandler(&hipcc);
   /* USER CODE BEGIN IPCC_C1_RX_IRQn 1 */
+
+  xTaskNotifyFromISR(bleTaskHandle, 0, eNoAction, &xHigherPriorityTaskWoken);
+  portYIELD_FROM_ISR( xHigherPriorityTaskWoken );
 
   /* USER CODE END IPCC_C1_RX_IRQn 1 */
 }
@@ -209,9 +243,14 @@ void IPCC_C1_TX_IRQHandler(void)
 {
   /* USER CODE BEGIN IPCC_C1_TX_IRQn 0 */
 
+  BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+
   /* USER CODE END IPCC_C1_TX_IRQn 0 */
   HAL_IPCC_TX_IRQHandler(&hipcc);
   /* USER CODE BEGIN IPCC_C1_TX_IRQn 1 */
+
+  xTaskNotifyFromISR(bleTaskHandle, 0, eNoAction, &xHigherPriorityTaskWoken);
+  portYIELD_FROM_ISR( xHigherPriorityTaskWoken );
 
   /* USER CODE END IPCC_C1_TX_IRQn 1 */
 }

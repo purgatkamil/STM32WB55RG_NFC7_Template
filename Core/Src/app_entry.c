@@ -36,6 +36,11 @@
 /* Private includes -----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
+#include "cmsis_os.h"
+#include "cmsis_os2.h"
+#include "task.h"
+#include "FreeRTOS.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -505,6 +510,18 @@ static void APPE_SysEvtReadyProcessing(void * pPayload)
 }
 
 /* USER CODE BEGIN FD_LOCAL_FUNCTIONS */
+
+void UTIL_SEQ_Own_Idle(void)
+{
+#if (CFG_LPM_SUPPORTED == 1)
+  UTIL_LPM_EnterLowPower();
+#endif /* CFG_LPM_SUPPORTED == 1 */
+
+  __enable_irq();
+  xTaskNotifyWait(0, 0, NULL, portMAX_DELAY);
+
+  return;
+}
 
 /* USER CODE END FD_LOCAL_FUNCTIONS */
 

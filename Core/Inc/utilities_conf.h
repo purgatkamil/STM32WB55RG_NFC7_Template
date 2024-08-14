@@ -16,6 +16,8 @@
   *
   *****************************************************************************
   */
+
+#include "utilities_conf_custom.h"
 /* USER CODE END Header */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
