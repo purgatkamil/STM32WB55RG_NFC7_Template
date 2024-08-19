@@ -1,26 +1,27 @@
 /* USER CODE BEGIN Header */
 /**
   ******************************************************************************
-  * @file    App/custom_app.h
+  * @file    hrs_app.h
   * @author  MCD Application Team
-  * @brief   Header for custom_app.c module
+  * @brief   Header for hrs_application.c module
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2024 STMicroelectronics.
-  * All rights reserved.
+  * <h2><center>&copy; Copyright (c) 2019 STMicroelectronics. 
+  * All rights reserved.</center></h2>
   *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
+  * This software component is licensed by ST under Ultimate Liberty license 
+  * SLA0044, the "License"; You may not use this file except in compliance with 
+  * the License. You may obtain a copy of the License at:
+  *                             www.st.com/SLA0044
   *
   ******************************************************************************
   */
 /* USER CODE END Header */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef CUSTOM_APP_H
-#define CUSTOM_APP_H
+#ifndef __HRS_APP_H
+#define __HRS_APP_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -34,17 +35,6 @@ extern "C" {
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
-typedef enum
-{
-  CUSTOM_CONN_HANDLE_EVT,
-  CUSTOM_DISCON_HANDLE_EVT,
-} Custom_App_Opcode_Notification_evt_t;
-
-typedef struct
-{
-  Custom_App_Opcode_Notification_evt_t     Custom_Evt_Opcode;
-  uint16_t                                 ConnectionHandle;
-} Custom_App_ConnHandle_Not_evt_t;
 /* USER CODE BEGIN ET */
 
 /* USER CODE END ET */
@@ -65,8 +55,7 @@ typedef struct
 /* USER CODE END EM */
 
 /* Exported functions ---------------------------------------------*/
-void Custom_APP_Init(void);
-void Custom_APP_Notification(Custom_App_ConnHandle_Not_evt_t *pNotification);
+void HRSAPP_Init( void );
 /* USER CODE BEGIN EF */
 
 /* USER CODE END EF */
@@ -75,4 +64,6 @@ void Custom_APP_Notification(Custom_App_ConnHandle_Not_evt_t *pNotification);
 }
 #endif
 
-#endif /* CUSTOM_APP_H */
+#endif /*__HRS_APP_H */
+
+/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

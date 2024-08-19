@@ -60,16 +60,64 @@ void MX_NFC7_Init(void)
 {
   /* USER CODE BEGIN SV */
 
+	NFC07A1_LED_Init(GREEN_LED );
+	NFC07A1_LED_Init(BLUE_LED );
+	NFC07A1_LED_Init(YELLOW_LED );
+
+	NFC07A1_LED_On( GREEN_LED );
+	osDelay( 30 );
+	NFC07A1_LED_On( BLUE_LED );
+	osDelay( 30 );
+	NFC07A1_LED_On( YELLOW_LED );
+	osDelay( 30 );
+
+	while( NFC07A1_NFCTAG_Init(NFC07A1_NFCTAG_INSTANCE) != NFCTAG_OK );
+
+	NFC07A1_NFCTAG_SetRFDisable_Dyn(0);
+
+	NFC07A1_GPO_Init();
+
+	NFC07A1_NFCTAG_ConfigIT(0,0x82);
+
+	if( NfcType5_NDEFDetection( ) != NDEF_OK )
+	{
+	  CCFileStruct.MagicNumber = NFCT5_MAGICNUMBER_E1_CCFILE;
+	  CCFileStruct.Version = NFCT5_VERSION_V1_0;
+	  CCFileStruct.MemorySize = ( ST25DVXXKC_MAX_SIZE / 8 ) & 0xFF;
+	  CCFileStruct.TT5Tag = 0x01;
+	  /* Init of the Type Tag 5 component (M24LR) */
+
+	  NfcTag_SelectProtocol(NFCTAG_TYPE5);
+
+	  while( NfcType5_TT5Init( ) != NFCTAG_OK );
+	}
+
+	NDEF_ClearNDEF();
+
+	NFC07A1_LED_Off( GREEN_LED );
+	osDelay( 30 );
+	NFC07A1_LED_Off( BLUE_LED );
+	osDelay( 30 );
+	NFC07A1_LED_Off( YELLOW_LED );
+	osDelay( 30 );
+
+	NFC07A1_LED_On( BLUE_LED );
+	osDelay( 30 );
+
   /* USER CODE END SV */
 
   /* USER CODE BEGIN NFC7_Library_Init_PreTreatment */
 
+
+	#if 0
   /* USER CODE END NFC7_Library_Init_PreTreatment */
 
   /* Initialize the peripherals and the NFC7 components */
   MX_NFC7_NDEF_URI_Init();
 
   /* USER CODE BEGIN SV */
+
+	#endif
 
   /* USER CODE END SV */
 

@@ -1,11 +1,10 @@
-
 /**
-  ******************************************************************************
-  * @file    app_ble.h
-  * @author  MCD Application Team
-  * @brief   Header for ble application
-  ******************************************************************************
-  * @attention
+ ******************************************************************************
+ * @file    hids_menu.h
+ * @author  MCD Application Team
+ * @brief   Header for hids_menu.c module
+ ******************************************************************************
+ * @attention
  *
  * <h2><center>&copy; Copyright (c) 2019 STMicroelectronics.
  * All rights reserved.</center></h2>
@@ -20,37 +19,28 @@
 
 
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __APP_BLE_H
-#define __APP_BLE_H
+#ifndef __HIDS_MENU_H
+#define __HIDS_MENU_H
 
 #ifdef __cplusplus
-extern "C" {
+extern "C" 
+{
 #endif
 
-/* Includes ------------------------------------------------------------------*/
-#include "hci_tl.h"
   
+/* Includes ------------------------------------------------------------------*/
 /* Exported types ------------------------------------------------------------*/
-typedef enum
-{
-  APP_BLE_Limited,
-  APP_BLE_Full,
-} APP_BLE_InitMode_t;
-
 /* Exported constants --------------------------------------------------------*/
 /* External variables --------------------------------------------------------*/
 /* Exported macros -----------------------------------------------------------*/
 /* Exported functions ------------------------------------------------------- */
-void APP_BLE_Init( void );
-    
-void APP_BLE_Key_Button1_Action(void);
-void APP_BLE_Key_Button2_Action(void);
-void APP_BLE_Key_Button3_Action(void);
+void HIDS_Menu (uint8_t * action_type, uint8_t * report);
+
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /*__APP_BLE_H */
+#endif /*__HIDS_MENU_H */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

@@ -90,6 +90,10 @@ static void Init_Rtc(void);
 
 /* USER CODE BEGIN PFP */
 
+static void Init_Debug( void );
+static void Led_Init( void );
+static void Button_Init( void );
+
 /* USER CODE END PFP */
 
 /* Functions Definition ------------------------------------------------------*/
@@ -122,6 +126,14 @@ void MX_APPE_Init(void)
   HW_TS_Init(hw_ts_InitMode_Full, &hrtc); /**< Initialize the TimerServer */
 
 /* USER CODE BEGIN APPE_Init_1 */
+
+  Init_Debug();
+
+  UTIL_LPM_SetOffMode(1 << CFG_LPM_APP, UTIL_LPM_DISABLE); // czy potrzebne?
+
+  Led_Init();
+
+  Button_Init();
 
 /* USER CODE END APPE_Init_1 */
   appe_Tl_Init();	/* Initialize all transport layers */
@@ -511,6 +523,78 @@ static void APPE_SysEvtReadyProcessing(void * pPayload)
 
 /* USER CODE BEGIN FD_LOCAL_FUNCTIONS */
 
+static void Led_Init( void )
+{
+#if (CFG_LED_SUPPORTED == 1)
+  /**
+   * Leds Initialization
+   */
+
+  BSP_LED_Init(LED_BLUE);
+  BSP_LED_Init(LED_GREEN);
+  BSP_LED_Init(LED_RED);
+
+  BSP_LED_On(LED_GREEN);
+#endif
+
+  return;
+}
+
+static void Button_Init( void )
+{
+#if (CFG_BUTTON_SUPPORTED == 1)
+  /**
+   * Button Initialization
+   */
+
+  BSP_PB_Init(BUTTON_SW1, BUTTON_MODE_EXTI);
+#endif
+
+  return;
+}
+
+static void Init_Debug( void )
+{
+#if (CFG_DEBUGGER_SUPPORTED == 1)
+  /**
+   * Keep debugger enabled while in any low power mode
+   */
+  HAL_DBGMCU_EnableDBGSleepMode();
+
+  /***************** ENABLE DEBUGGER *************************************/
+  LL_EXTI_EnableIT_32_63(LL_EXTI_LINE_48);
+  LL_C2_EXTI_EnableIT_32_63(LL_EXTI_LINE_48);
+
+#else
+
+  GPIO_InitTypeDef gpio_config = {0};
+
+  gpio_config.Pull = GPIO_NOPULL;
+  gpio_config.Mode = GPIO_MODE_ANALOG;
+
+  gpio_config.Pin = GPIO_PIN_15 | GPIO_PIN_14 | GPIO_PIN_13;
+  __HAL_RCC_GPIOA_CLK_ENABLE();
+  HAL_GPIO_Init(GPIOA, &gpio_config);
+  __HAL_RCC_GPIOA_CLK_DISABLE();
+
+  gpio_config.Pin = GPIO_PIN_4 | GPIO_PIN_3;
+  __HAL_RCC_GPIOB_CLK_ENABLE();
+  HAL_GPIO_Init(GPIOB, &gpio_config);
+  __HAL_RCC_GPIOB_CLK_DISABLE();
+
+  HAL_DBGMCU_DisableDBGSleepMode();
+  HAL_DBGMCU_DisableDBGStopMode();
+  HAL_DBGMCU_DisableDBGStandbyMode();
+
+#endif /* (CFG_DEBUGGER_SUPPORTED == 1) */
+
+#if(CFG_DEBUG_TRACE != 0)
+  DbgTraceInit();
+#endif
+
+  return;
+}
+
 void UTIL_SEQ_Own_Idle(void)
 {
 #if (CFG_LPM_SUPPORTED == 1)
@@ -610,5 +694,27 @@ void shci_cmd_resp_wait(uint32_t timeout)
 }
 
 /* USER CODE BEGIN FD_WRAP_FUNCTIONS */
+
+void HAL_GPIO_EXTI_Callback( uint16_t GPIO_Pin )
+{
+  switch (GPIO_Pin)
+  {
+    case BUTTON_SW1_PIN:
+     APP_BLE_Key_Button1_Action();
+      break;
+
+    case BUTTON_SW2_PIN:
+      APP_BLE_Key_Button2_Action();
+      break;
+
+    case BUTTON_SW3_PIN:
+      APP_BLE_Key_Button3_Action();
+      break;
+
+    default:
+      break;
+  }
+  return;
+}
 
 /* USER CODE END FD_WRAP_FUNCTIONS */

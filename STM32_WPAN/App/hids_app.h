@@ -1,29 +1,31 @@
-/* USER CODE BEGIN Header */
+
 /**
   ******************************************************************************
-  * @file    App/template_server_app.h
+  * @file    hids_app.h
   * @author  MCD Application Team
-  * @brief   Header for p2p_server_app.c module
+  * @brief   Header for hids_app.c module
   ******************************************************************************
   * @attention
-  *
-  * Copyright (c) 2024 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
-/* USER CODE END Header */
-/* USER CODE BEGIN UserCode */
+ *
+ * <h2><center>&copy; Copyright (c) 2019 STMicroelectronics.
+ * All rights reserved.</center></h2>
+ *
+ * This software component is licensed by ST under Ultimate Liberty license
+ * SLA0044, the "License"; You may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at:
+ *                             www.st.com/SLA0044
+ *
+ ******************************************************************************
+ */
+
+
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef TEMPLATE_SERVER_APP_H
-#define TEMPLATE_SERVER_APP_H
+#ifndef __HIDS_APP_H
+#define __HIDS_APP_H
 
 #ifdef __cplusplus
-extern "C" {
+extern "C" 
+{
 #endif
 
   /* Includes ------------------------------------------------------------------*/
@@ -32,10 +34,14 @@ extern "C" {
   /* External variables --------------------------------------------------------*/
   /* Exported macros -----------------------------------------------------------*/
   /* Exported functions ------------------------------------------------------- */
-  void TEMPLATE_APP_Init( void );
+  void HIDSAPP_Init(void);
+  void HIDSAPP_Profile_UpdateChar(void);
+
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /*P2P_SERVER_APP_H */
+#endif /* __HIDS_APP_H */
+
+/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

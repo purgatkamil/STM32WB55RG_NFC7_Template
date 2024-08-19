@@ -22,6 +22,12 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
+#include "app_entry.h"
+#include "stm32_lpm.h"
+#include "stm32_seq.h"
+#include "dbg_trace.h"
+#include "nfc07a1.h" //zmienione z "nfc04a1.h"
+
 #include "app_nfc7.h"
 
 #include "cmsis_os.h"
